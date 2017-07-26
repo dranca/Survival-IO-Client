@@ -10,13 +10,11 @@ public class SFS2X_connect : MonoBehaviour {
     public int serverPort = 9933;
     public string zoneName = "BasicExamples";
     public string userName = "Test";
-
-
+    
     SmartFox sfs;
 
 	// Use this for initialization
 	void Start () {
-        print("Started SFS");
         sfs = new SmartFox();
         sfs.ThreadSafeMode = true;
         sfs.AddEventListener(SFSEvent.CONNECTION, OnConnection);
@@ -25,6 +23,8 @@ public class SFS2X_connect : MonoBehaviour {
 
         sfs.AddEventListener(SFSEvent.EXTENSION_RESPONSE, OnTestRespond);
         sfs.Connect(serverIP, serverPort);
+
+        DontDestroyOnLoad(gameObject);
 	}
 
     void OnSocketError(BaseEvent e)
@@ -37,7 +37,6 @@ public class SFS2X_connect : MonoBehaviour {
         if ((bool) e.Params["success"])
         {
             Debug.Log("Connected successfully");
-            Login();
         } else
         {
             printBaseEvent(e);
@@ -47,16 +46,6 @@ public class SFS2X_connect : MonoBehaviour {
     void OnLogin(BaseEvent e)
     {
         print("Login Successfull");
-        sendTestMessage();
-    }
-
-    void sendTestMessage()
-    {
-        ISFSObject output = new SFSObject();
-        output.PutInt("numA", 15);
-        output.PutInt("numB", 20);
-
-        sfs.Send(new ExtensionRequest("SumNumbers", output));
     }
 
     void OnLoginError(BaseEvent e)
