@@ -5,6 +5,6 @@ public class RotationController : MonoBehaviour {
     private void LateUpdate()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
+        transform.rotation = Quaternion.LookRotation(Vector3.forward * Time.deltaTime, mousePos - transform.position);
     }
 }

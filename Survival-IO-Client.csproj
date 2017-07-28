@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Assets\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\ConnectionMenuUI.cs" />
+    <Compile Include="Assets\Scripts\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\MovementController.cs" />
     <Compile Include="Assets\Scripts\RotationController.cs" />
     <Compile Include="Assets\Scripts\SFS2X_connect.cs" />

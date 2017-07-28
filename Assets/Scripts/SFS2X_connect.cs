@@ -75,6 +75,11 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
 
     private void FixedUpdate()
     {
+        if(sfs == null)
+        {
+            SceneManager.LoadScene(mainMenuScene);
+            return;
+        }
         sfs.ProcessEvents();
     }
 

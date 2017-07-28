@@ -17,10 +17,9 @@ public class MovementController : MonoBehaviour {
         }
 	}
 
-    private void FixedUpdate()
+    private void Update()
     {
-        Vector2 movement = new Vector2(Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime, Input.GetAxis("Vertical") * speed * Time.deltaTime);
-        Vector3 MVMT = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        rigidBody.MovePosition(MVMT * speed * Time.fixedDeltaTime + transform.position);
+        Vector3 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+        rigidBody.MovePosition(transform.position + direction * speed * Time.deltaTime);
     }
 }
