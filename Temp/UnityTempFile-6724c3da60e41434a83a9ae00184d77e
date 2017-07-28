@@ -92,6 +92,8 @@
 -define:UNITY_TEAM_LICENSE
 -define:ENABLE_VSTU
 Assets/Scripts/ConnectionMenuUI.cs
+Assets/Scripts/MovementController.cs
+Assets/Scripts/RotationController.cs
 Assets/Scripts/SFS2X_connect.cs
 Assets/UnityTestTools/Assertions/AssertionComponent.cs
 Assets/UnityTestTools/Assertions/AssertionException.cs

@@ -29,7 +29,10 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
         {
             print("Delete this object");
             DestroyObject(this.gameObject);
+            return;
         }
+
+        print("Try to connect");
         sfs = new SmartFox();
         sfs.ThreadSafeMode = true;
         sfs.AddEventListener(SFSEvent.CONNECTION, OnConnection);
