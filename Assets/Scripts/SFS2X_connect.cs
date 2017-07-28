@@ -2,13 +2,11 @@ using UnityEngine;
 using Sfs2X;
 using Sfs2X.Core;
 using Sfs2X.Requests;
-using Sfs2X.Entities.Data;
-using System;
+using UnityEngine.SceneManagement;
 
 public interface SFS2XConnectInput {
     void signInWithName(string name);
 }
-
 
 public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
 
@@ -16,11 +14,22 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
     public int serverPort = 9933;
     public string zoneName = "BasicExamples";
     public string userName = "Test";
+
+    public string mainSceneName = "GameScene";
+
+    public string mainMenuScene = "Main";
     
     SmartFox sfs;
 
 	// Use this for initialization
 	void Start () {
+        bool otherSFS2XExists = GameObject.FindObjectsOfType<SFS2X_connect>().Length > 1;
+
+        if (otherSFS2XExists)
+        {
+            print("Delete this object");
+            DestroyObject(this.gameObject);
+        }
         sfs = new SmartFox();
         sfs.ThreadSafeMode = true;
         sfs.AddEventListener(SFSEvent.CONNECTION, OnConnection);
@@ -41,6 +50,10 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
         if ((bool) e.Params["success"])
         {
             Debug.Log("Connected successfully");
+            if (Debug.isDebugBuild)
+            {
+                signInWithName("F11");
+            }
         } else
         {
             printBaseEvent(e);
@@ -48,8 +61,8 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
     }
 
     void OnLogin(BaseEvent e)
-    {
-        print("Login Successfull");
+    {   
+        SceneManager.LoadScene(mainSceneName);
     }
 
     void OnLoginError(BaseEvent e)
