@@ -18,7 +18,7 @@ public class ConnectionMenuUI : MonoBehaviour {
     
     private void findNetworking()
     {
-        networking = GameObject.Find("Networking").GetComponent<SFS2XConnectInput>();
+        networking = GameObject.Find("DoesNotGetDestroyed").GetComponent<SFS2XConnectInput>();
     }
 
     public void UserSelectedConnect()

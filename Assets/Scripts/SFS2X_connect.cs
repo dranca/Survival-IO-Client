@@ -3,10 +3,14 @@ using Sfs2X;
 using Sfs2X.Core;
 using Sfs2X.Requests;
 using UnityEngine.SceneManagement;
-using Sfs2X.Requests.MMO;
+using Sfs2X.Entities.Data;
+using Sfs2X.Entities.Variables;
+using System.Collections.Generic;
 
 public interface SFS2XConnectInput {
     void signInWithName(string name);
+    void sendTransformData(Transform player);
+    void sendRotationData(double euler);
 }
 
 public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
@@ -19,8 +23,14 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
     public string mainSceneName = "GameScene";
 
     public string mainMenuScene = "Main";
+
+    public string roomName = "Europe";
+
+    List<UserVariable> listToBeSent = new List<UserVariable>();
     
     SmartFox sfs;
+
+    UserManagerInput userManager;
 
 	// Use this for initialization
 	void Start () {
@@ -33,18 +43,34 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
             return;
         }
 
-        print("Try to connect");
+        userManager = gameObject.GetComponent<UserManagerInput>();
+
+        if (userManager == null)
+        {
+            Debug.LogError("We could not find the user manager");
+        }
+        
         sfs = new SmartFox();
         sfs.ThreadSafeMode = true;
-        sfs.AddEventListener(SFSEvent.CONNECTION, OnConnection);
-        sfs.AddEventListener(SFSEvent.LOGIN, OnLogin);
-        sfs.AddEventListener(SFSEvent.LOGIN_ERROR, OnLoginError);
-        sfs.AddEventListener(SFSEvent.ROOM_JOIN, OnRoomJoin);
+
+        AddEventListeners();
 
         sfs.Connect(serverIP, serverPort);
 
         DontDestroyOnLoad(gameObject);
 	}
+
+    void AddEventListeners()
+    {
+        sfs.AddEventListener(SFSEvent.CONNECTION, OnConnection);
+        sfs.AddEventListener(SFSEvent.LOGIN, OnLogin);
+        sfs.AddEventListener("SetOnMap", OnSetOnMap);
+        sfs.AddEventListener(SFSEvent.LOGIN_ERROR, OnLoginError);
+        sfs.AddEventListener(SFSEvent.ROOM_JOIN, OnRoomJoin);
+        sfs.AddEventListener(SFSEvent.PROXIMITY_LIST_UPDATE, OnProximityListUpdate);
+        sfs.AddEventListener(SFSEvent.USER_VARIABLES_UPDATE, OnUserVariableUpdate);
+        sfs.AddEventListener(SFSEvent.CONNECTION_LOST, OnDisconnect);
+    }
 
     void OnSocketError(BaseEvent e)
     {
@@ -68,18 +94,41 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
 
     void OnRoomJoin(BaseEvent e)
     {
-        // Send position Request
-        
+        ISFSObject output = new SFSObject();
+        IRequest request = new ExtensionRequest("PositionRandom", output);
+        sfs.Send(request);
     }
 
     void OnLogin(BaseEvent e)
     {   
         SceneManager.LoadScene(mainSceneName);
+        sfs.Send(new JoinRoomRequest(roomName));
+        print("Join Room");
     }
 
     void OnLoginError(BaseEvent e)
     {
         print("Login Failled with errorCode: " + e.Params["errorCode"] + e.Params["errorMessage"] );
+    }
+
+    void OnProximityListUpdate(BaseEvent e)
+    {
+        userManager.ProximityListUpdated(e);
+    }
+
+    void OnUserVariableUpdate(BaseEvent e)
+    {
+        userManager.UserVariablesUpdated(e);
+    }
+
+    void OnDisconnect(BaseEvent e)
+    {
+        SceneManager.LoadScene(mainMenuScene);
+    }
+
+    void OnSetOnMap(BaseEvent e)
+    {
+
     }
 
     private void FixedUpdate()
@@ -90,6 +139,12 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
             return;
         }
         sfs.ProcessEvents();
+        if (listToBeSent.Count > 0)
+        {
+            print(listToBeSent);
+            sfs.Send(new SetUserVariablesRequest(listToBeSent));
+            listToBeSent.Clear();
+        }
     }
 
     private void OnApplicationQuit()
@@ -101,7 +156,7 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
         }
     }
 
-    void printBaseEvent(BaseEvent e)ss
+    void printBaseEvent(BaseEvent e)
     {
         string message = "";
         foreach(string key in e.Params.Keys)
@@ -117,6 +172,21 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
         if (sfs.IsConnected)
         {
             sfs.Send(new LoginRequest(name, "", zoneName));
+        } else
+        {
+            sfs.Connect();
         }
+    }
+
+    public  void sendTransformData(Transform player)
+    {
+        listToBeSent.Add(new SFSUserVariable("x", (double)player.position.x));
+        listToBeSent.Add(new SFSUserVariable("y", (double)player.position.y));
+    }
+
+    public void sendRotationData(double euler)
+    {
+        print("add rotation" + euler);
+        listToBeSent.Add(new SFSUserVariable("rot", euler));
     }
 }
