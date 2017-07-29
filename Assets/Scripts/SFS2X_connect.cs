@@ -101,7 +101,7 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
         }
     }
 
-    void printBaseEvent(BaseEvent e)
+    void printBaseEvent(BaseEvent e)ss
     {
         string message = "";
         foreach(string key in e.Params.Keys)
