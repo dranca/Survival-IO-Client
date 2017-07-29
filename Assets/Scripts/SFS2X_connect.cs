@@ -3,6 +3,7 @@ using Sfs2X;
 using Sfs2X.Core;
 using Sfs2X.Requests;
 using UnityEngine.SceneManagement;
+using Sfs2X.Requests.MMO;
 
 public interface SFS2XConnectInput {
     void signInWithName(string name);
@@ -38,6 +39,8 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
         sfs.AddEventListener(SFSEvent.CONNECTION, OnConnection);
         sfs.AddEventListener(SFSEvent.LOGIN, OnLogin);
         sfs.AddEventListener(SFSEvent.LOGIN_ERROR, OnLoginError);
+        sfs.AddEventListener(SFSEvent.ROOM_JOIN, OnRoomJoin);
+
         sfs.Connect(serverIP, serverPort);
 
         DontDestroyOnLoad(gameObject);
@@ -61,6 +64,12 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
         {
             printBaseEvent(e);
         }
+    }
+
+    void OnRoomJoin(BaseEvent e)
+    {
+        // Send position Request
+        
     }
 
     void OnLogin(BaseEvent e)
