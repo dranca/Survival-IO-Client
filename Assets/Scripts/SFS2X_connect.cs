@@ -64,7 +64,7 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
     {
         sfs.AddEventListener(SFSEvent.CONNECTION, OnConnection);
         sfs.AddEventListener(SFSEvent.LOGIN, OnLogin);
-        sfs.AddEventListener("SetOnMap", OnSetOnMap);
+        sfs.AddEventListener(SFSEvent.EXTENSION_RESPONSE, OnExtensionResponse);
         sfs.AddEventListener(SFSEvent.LOGIN_ERROR, OnLoginError);
         sfs.AddEventListener(SFSEvent.ROOM_JOIN, OnRoomJoin);
         sfs.AddEventListener(SFSEvent.PROXIMITY_LIST_UPDATE, OnProximityListUpdate);
@@ -96,6 +96,7 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
     {
         ISFSObject output = new SFSObject();
         IRequest request = new ExtensionRequest("PositionRandom", output);
+        print("OnRoom Join");
         sfs.Send(request);
     }
 
@@ -126,9 +127,20 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
         SceneManager.LoadScene(mainMenuScene);
     }
 
+    void OnExtensionResponse(BaseEvent e)
+    {
+        printBaseEvent(e);
+        var command = (string)e.Params["cmd"];
+        if (command == "SetOnMap")
+        {
+            OnSetOnMap(e);
+        }
+    }
+
     void OnSetOnMap(BaseEvent e)
     {
-
+        print("Set on Map called");
+        userManager.CreateLocalUser(e);
     }
 
     private void FixedUpdate()
@@ -141,7 +153,6 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
         sfs.ProcessEvents();
         if (listToBeSent.Count > 0)
         {
-            print(listToBeSent);
             sfs.Send(new SetUserVariablesRequest(listToBeSent));
             listToBeSent.Clear();
         }
@@ -161,7 +172,7 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
         string message = "";
         foreach(string key in e.Params.Keys)
         {
-            message += e.Params[key];
+            message += key + " " + e.Params[key] + " ";
         }
 
         print(message);
@@ -186,7 +197,6 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
 
     public void sendRotationData(double euler)
     {
-        print("add rotation" + euler);
         listToBeSent.Add(new SFSUserVariable("rot", euler));
     }
 }
