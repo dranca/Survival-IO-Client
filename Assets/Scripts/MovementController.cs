@@ -24,7 +24,7 @@ public class MovementController : MonoBehaviour {
 
     private void Update()
     {
-        Vector3 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+        Vector3 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         rigidBody.MovePosition(transform.position + direction * speed * Time.deltaTime);
         if (direction != Vector3.zero)
         {
@@ -39,5 +39,10 @@ public class MovementController : MonoBehaviour {
             isMovementDirty = false;
         }
         
+    }
+
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(0, 0, 300, 100), "X: "+transform.position.x + " Y: " + transform.position.y);
     }
 }

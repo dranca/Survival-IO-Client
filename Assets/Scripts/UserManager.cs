@@ -15,6 +15,7 @@ public class UserManager : MonoBehaviour, UserManagerInput {
 
     public Transform playerPrefab;
     private Transform localPlayer;
+    private User locaLuser;
 
     private Dictionary<User, GameObject> users = new Dictionary<User, GameObject>();
 
@@ -36,7 +37,8 @@ public class UserManager : MonoBehaviour, UserManagerInput {
         localPlayer.GetComponentInChildren<RotationController>().enabled = true;
         localPlayer.GetComponent<Rigidbody2D>().isKinematic = false;
         localPlayer.transform.position = new Vector3(xPos, yPos);
-        Camera.main.GetComponent<FollowCamera>().target = localPlayer.gameObject;
+        localPlayer.GetComponent<NetworkingMovementController>().enabled = false;
+        Camera.main.GetComponent<CameraFollow>().target = localPlayer.gameObject;
     }
     public void ProximityListUpdated(BaseEvent e)
     {
@@ -61,8 +63,30 @@ public class UserManager : MonoBehaviour, UserManagerInput {
             GameObject.Destroy(removedUser);
         }
     }
-    public void UserVariablesUpdated(BaseEvent e)
+    public void UserVariablesUpdated(BaseEvent evt)
     {
-        print("User Variable Changed");
+        ArrayList changedVars = (ArrayList)evt.Params["changedVars"];
+        SFSUser user = (SFSUser)evt.Params["user"];
+
+        if (! users.ContainsKey(user))
+        {
+            return;
+        }
+        var player = users[user];
+        var networkingMovement = player.GetComponent<NetworkingMovementControllerInput>();
+        bool userMadeChangesToPosition = changedVars.Contains("x") || changedVars.Contains("y");
+        if (userMadeChangesToPosition)
+        {
+            
+            var targetPosition = new Vector2((float)user.GetVariable("x").GetDoubleValue(), 
+                                             (float)user.GetVariable("y").GetDoubleValue());
+            networkingMovement.moveToPosition(targetPosition);
+        }
+
+        bool userMadeChangesToRotation = changedVars.Contains("rot");
+        if (userMadeChangesToRotation)
+        {
+            networkingMovement.rotateToEuler((float)user.GetVariable("rot").GetDoubleValue());
+        }
     }
 }

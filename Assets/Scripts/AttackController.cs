@@ -1,23 +1,41 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class AttackController : MonoBehaviour {
+public interface AttackControllerInput
+{
+    void Attack();
+    void TryStopAttack();
+}
 
-    public Transform weaponSlot;
+public class AttackController : MonoBehaviour, AttackControllerInput
+{
 
-    public float attackDuration;
+    public bool isAttacking = false;
 
-    private bool isAttacking = false;
+    public Animator animator;
 
 	// Use this for initialization
 	void Start () {
-	    if (weaponSlot == null)
+        if (animator == null)
         {
-            Debug.LogError("Please bind the weapons slot.");
+            Debug.LogError("Please connect animator.");
         }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	    
-	}
+        animator.SetBool("isAttacking", isAttacking);
+    }
+
+    public void Attack()
+    {
+        isAttacking = true;
+        animator.SetBool("isAttacking", isAttacking);
+    }
+
+    public void TryStopAttack()
+    {
+        isAttacking = false;
+        animator.SetBool("isAttacking", isAttacking);
+    }
 }

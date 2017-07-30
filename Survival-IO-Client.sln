@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Survival-IO-Client", "Survival-IO-Client.csproj", "{620EDF1F-1801-A7F1-B0D3-F22DEDC74A99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Survival-IO-Client.Editor", "Survival-IO-Client.Editor.csproj", "{BDAD0045-13CD-A7BB-6BB7-A4C90E820A6C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,10 +13,6 @@ Global
 		{620EDF1F-1801-A7F1-B0D3-F22DEDC74A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{620EDF1F-1801-A7F1-B0D3-F22DEDC74A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{620EDF1F-1801-A7F1-B0D3-F22DEDC74A99}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BDAD0045-13CD-A7BB-6BB7-A4C90E820A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BDAD0045-13CD-A7BB-6BB7-A4C90E820A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BDAD0045-13CD-A7BB-6BB7-A4C90E820A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BDAD0045-13CD-A7BB-6BB7-A4C90E820A6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

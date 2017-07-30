@@ -18,18 +18,14 @@ Platform assembly: E:\Proiecte Unity\Survival-IO-Client\Builds\Survive-IO-Client
 Loading E:\Proiecte Unity\Survival-IO-Client\Builds\Survive-IO-Client-Build_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: E:\Proiecte Unity\Survival-IO-Client\Builds\Survive-IO-Client-Build_Data\Managed\SmartFox2X.dll (this message is harmless)
 Loading E:\Proiecte Unity\Survival-IO-Client\Builds\Survive-IO-Client-Build_Data\Managed\SmartFox2X.dll into Unity Child Domain
-- Completed reload, in  0.170 seconds
+- Completed reload, in  0.296 seconds
 Platform assembly: E:\Proiecte Unity\Survival-IO-Client\Builds\Survive-IO-Client-Build_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: E:\Proiecte Unity\Survival-IO-Client\Builds\Survive-IO-Client-Build_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.526921 ms
-Please add Player prefab
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
+UnloadTime: 1.132954 ms
 Connected successfully
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
@@ -38,11 +34,11 @@ Join Room
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 3.586371 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.282727 ms
 
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 258.
-Total: 0.432259 ms (FindLiveObjects: 0.058818 ms CreateObjectMapping: 0.014606 ms MarkObjects: 0.335149 ms  DeleteObjects: 0.022895 ms)
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 290.
+Total: 0.458313 ms (FindLiveObjects: 0.045791 ms CreateObjectMapping: 0.014606 ms MarkObjects: 0.375019 ms  DeleteObjects: 0.022501 ms)
 
 Delete this object
  
@@ -60,170 +56,9 @@ Set on Map called
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[Transform] (UnityEngine.Transform original) [0x00000] in <filename unknown>:0 
-  at UserManager.CreateLocalUser (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.OnSetOnMap (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.OnExtensionResponse (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.EventDispatcher.DispatchEvent (Sfs2X.Core.BaseEvent evt) [0x00000] in <filename unknown>:0 
-Rethrow as Exception: Error dispatching event extensionResponse: The Object you want to instantiate is null.   at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[Transform] (UnityEngine.Transform original) [0x00000] in <filename unknown>:0 
-  at UserManager.CreateLocalUser (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.OnSetOnMap (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.OnExtensionResponse (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.EventDispatcher.DispatchEvent (Sfs2X.Core.BaseEvent evt) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.EventDispatcher.DispatchEvent (Sfs2X.Core.BaseEvent evt) [0x00000] in <filename unknown>:0 
-  at Sfs2X.SmartFox.ProcessEvents () [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.FixedUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-User Variable Changed
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[UserVar: rot, type: DOUBLE, value: 0, private: False]
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[Transform] (UnityEngine.Transform original) [0x00000] in <filename unknown>:0 
-  at UserManager.ProximityListUpdated (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.OnProximityListUpdate (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.EventDispatcher.DispatchEvent (Sfs2X.Core.BaseEvent evt) [0x00000] in <filename unknown>:0 
-Rethrow as Exception: Error dispatching event proximityListUpdate: The Object you want to instantiate is null.   at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[Transform] (UnityEngine.Transform original) [0x00000] in <filename unknown>:0 
-  at UserManager.ProximityListUpdated (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.OnProximityListUpdate (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.EventDispatcher.DispatchEvent (Sfs2X.Core.BaseEvent evt) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.EventDispatcher.DispatchEvent (Sfs2X.Core.BaseEvent evt) [0x00000] in <filename unknown>:0 
-  at Sfs2X.SmartFox.ProcessEvents () [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.FixedUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-[SFS - ERROR] [TCPSocketLayer] General error reading data from socket: Read failure   at System.Net.Sockets.NetworkStream.Read (System.Byte[] buffer, Int32 offset, Int32 size) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.Sockets.TCPSocketLayer.Read () [0x00000] in <filename unknown>:0 
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.309095 ms
-
-Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 278.
-Total: 0.294489 ms (FindLiveObjects: 0.037501 ms CreateObjectMapping: 0.019737 ms MarkObjects: 0.223037 ms  DeleteObjects: 0.013421 ms)
-
-Please add Player prefab
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-Delete this object
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-Connected successfully
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-Join Room
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.477656 ms
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 258.
-Total: 0.260145 ms (FindLiveObjects: 0.025659 ms CreateObjectMapping: 0.007105 ms MarkObjects: 0.218300 ms  DeleteObjects: 0.008684 ms)
-
-Delete this object
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-OnRoom Join
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-params Sfs2X.Entities.Data.SFSObject cmd SetOnMap 
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-Set on Map called
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[Transform] (UnityEngine.Transform original) [0x00000] in <filename unknown>:0 
-  at UserManager.CreateLocalUser (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.OnSetOnMap (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.OnExtensionResponse (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.EventDispatcher.DispatchEvent (Sfs2X.Core.BaseEvent evt) [0x00000] in <filename unknown>:0 
-Rethrow as Exception: Error dispatching event extensionResponse: The Object you want to instantiate is null.   at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[Transform] (UnityEngine.Transform original) [0x00000] in <filename unknown>:0 
-  at UserManager.CreateLocalUser (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.OnSetOnMap (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.OnExtensionResponse (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.EventDispatcher.DispatchEvent (Sfs2X.Core.BaseEvent evt) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.EventDispatcher.DispatchEvent (Sfs2X.Core.BaseEvent evt) [0x00000] in <filename unknown>:0 
-  at Sfs2X.SmartFox.ProcessEvents () [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.FixedUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-[UserVar: rot, type: DOUBLE, value: 0, private: False]
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[Transform] (UnityEngine.Transform original) [0x00000] in <filename unknown>:0 
-  at UserManager.ProximityListUpdated (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.OnProximityListUpdate (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.EventDispatcher.DispatchEvent (Sfs2X.Core.BaseEvent evt) [0x00000] in <filename unknown>:0 
-Rethrow as Exception: Error dispatching event proximityListUpdate: The Object you want to instantiate is null.   at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[Transform] (UnityEngine.Transform original) [0x00000] in <filename unknown>:0 
-  at UserManager.ProximityListUpdated (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.OnProximityListUpdate (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.EventDispatcher.DispatchEvent (Sfs2X.Core.BaseEvent evt) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.EventDispatcher.DispatchEvent (Sfs2X.Core.BaseEvent evt) [0x00000] in <filename unknown>:0 
-  at Sfs2X.SmartFox.ProcessEvents () [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.FixedUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-[UserVar: rot, type: DOUBLE, value: 148.490264892578, private: False]
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[Transform] (UnityEngine.Transform original) [0x00000] in <filename unknown>:0 
-  at UserManager.ProximityListUpdated (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.OnProximityListUpdate (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.EventDispatcher.DispatchEvent (Sfs2X.Core.BaseEvent evt) [0x00000] in <filename unknown>:0 
-Rethrow as Exception: Error dispatching event proximityListUpdate: The Object you want to instantiate is null.   at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[Transform] (UnityEngine.Transform original) [0x00000] in <filename unknown>:0 
-  at UserManager.ProximityListUpdated (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.OnProximityListUpdate (Sfs2X.Core.BaseEvent e) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.EventDispatcher.DispatchEvent (Sfs2X.Core.BaseEvent evt) [0x00000] in <filename unknown>:0 
-  at Sfs2X.Core.EventDispatcher.DispatchEvent (Sfs2X.Core.BaseEvent evt) [0x00000] in <filename unknown>:0 
-  at Sfs2X.SmartFox.ProcessEvents () [0x00000] in <filename unknown>:0 
-  at SFS2X_connect.FixedUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 14.023758 ms
-
-Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 278.
-Total: 6.162163 ms (FindLiveObjects: 0.089215 ms CreateObjectMapping: 0.069872 ms MarkObjects: 5.976233 ms  DeleteObjects: 0.025659 ms)
-
-Please add Player prefab
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-Delete this object
+Application Quit
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 2f70 -> priority: 1 
+  Thread -> id: 1f50 -> priority: 1 

@@ -18,12 +18,7 @@ public class RotationController : MonoBehaviour {
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.rotation = Quaternion.LookRotation(Vector3.forward * Time.deltaTime, mousePos - transform.position);
-        var distance = Vector3.Distance(mousePos, previousPos);
-        if (distance > 0.2)
-        {
-            isRotationDirty = true;
-        }
-        previousPos = mousePos;
+        isRotationDirty = true;
     }
 
     private void FixedUpdate()

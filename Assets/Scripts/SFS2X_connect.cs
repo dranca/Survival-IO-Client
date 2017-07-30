@@ -35,7 +35,7 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
 	// Use this for initialization
 	void Start () {
         bool otherSFS2XExists = GameObject.FindObjectsOfType<SFS2X_connect>().Length > 1;
-
+        Application.runInBackground = true;
         if (otherSFS2XExists)
         {
             print("Delete this object");
