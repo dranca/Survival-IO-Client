@@ -63,7 +63,6 @@ public class UserManager : MonoBehaviour, UserManagerInput {
             
             player.transform.position = pos;
             player.transform.rotation = rotation;
-            print(pos);
             users[user] = player.gameObject;
         }
 
@@ -75,6 +74,7 @@ public class UserManager : MonoBehaviour, UserManagerInput {
     }
     public void UserVariablesUpdated(BaseEvent evt)
     {
+        
         ArrayList changedVars = (ArrayList)evt.Params["changedVars"];
         SFSUser user = (SFSUser)evt.Params["user"];
 
@@ -87,11 +87,9 @@ public class UserManager : MonoBehaviour, UserManagerInput {
         bool userMadeChangesToPosition = changedVars.Contains("x") || changedVars.Contains("y");
         if (userMadeChangesToPosition)
         {
-            
             var targetPosition = new Vector2((float)user.GetVariable("x").GetDoubleValue(), 
                                              (float)user.GetVariable("y").GetDoubleValue());
             networkingMovement.moveToPosition(targetPosition);
-            print("target rotation" + targetPosition);
         }
 
         bool userMadeChangesToRotation = changedVars.Contains("rot");
@@ -103,8 +101,6 @@ public class UserManager : MonoBehaviour, UserManagerInput {
         bool userMadeChangesToAttack = changedVars.Contains("atk");
         if (userMadeChangesToAttack)
         {
-
-            print("User made changes to attack");
             if (user.GetVariable("atk").GetBoolValue())
             {
                 animationController.Attack();
@@ -112,6 +108,11 @@ public class UserManager : MonoBehaviour, UserManagerInput {
             {
                 animationController.TryStopAttack();
             }
+        }
+        bool userChangedHealth = changedVars.Contains("hp");
+        if (userChangedHealth)
+        {
+            print("User changed health");
         }
     }
 }

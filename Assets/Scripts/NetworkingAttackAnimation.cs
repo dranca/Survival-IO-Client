@@ -24,7 +24,6 @@ public class NetworkingAttackAnimation : MonoBehaviour, NetworkingAttackAnimatio
 
     public void Attack()
     {
-        print("Attack");
         animator.SetBool("isAttacking", true);
     }
 
