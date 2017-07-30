@@ -1,41 +1,34 @@
 ﻿using System;
 using UnityEngine;
 
-public interface AttackControllerInput
-{
-    void Attack();
-    void TryStopAttack();
-}
-
-public class AttackController : MonoBehaviour, AttackControllerInput
+public class AttackController : MonoBehaviour
 {
 
-    public bool isAttacking = false;
+    private NetworkingAttackAnimationInput animationController;
+    private SFS2XConnectInput sfsConnect;
 
-    public Animator animator;
-
-	// Use this for initialization
-	void Start () {
-        if (animator == null)
+    private void Start()
+    {
+        animationController = GetComponent<NetworkingAttackAnimationInput>();
+        if (animationController == null)
         {
-            Debug.LogError("Please connect animator.");
+            Debug.LogError("Add animation controller");
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        animator.SetBool("isAttacking", isAttacking);
+
+        sfsConnect = GameObject.Find("DoesNotGetDestroyed").GetComponent<SFS2XConnectInput>();
     }
 
-    public void Attack()
+    private void Update()
     {
-        isAttacking = true;
-        animator.SetBool("isAttacking", isAttacking);
-    }
-
-    public void TryStopAttack()
-    {
-        isAttacking = false;
-        animator.SetBool("isAttacking", isAttacking);
+        if (Input.GetMouseButtonDown(0))
+        {
+            animationController.Attack();
+            sfsConnect.sendUserStartedAttacking();
+        } else if (Input.GetMouseButtonUp(0)) 
+        {
+            sfsConnect.sentUserStoppedAttacking();
+            animationController.TryStopAttack();
+        }
+            
     }
 }

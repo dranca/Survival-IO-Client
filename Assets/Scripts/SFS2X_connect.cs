@@ -6,11 +6,14 @@ using UnityEngine.SceneManagement;
 using Sfs2X.Entities.Data;
 using Sfs2X.Entities.Variables;
 using System.Collections.Generic;
+using System;
 
 public interface SFS2XConnectInput {
     void signInWithName(string name);
     void sendTransformData(Transform player);
     void sendRotationData(double euler);
+    void sendUserStartedAttacking();
+    void sentUserStoppedAttacking();
 }
 
 public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
@@ -198,5 +201,15 @@ public class SFS2X_connect : MonoBehaviour, SFS2XConnectInput {
     public void sendRotationData(double euler)
     {
         listToBeSent.Add(new SFSUserVariable("rot", euler));
+    }
+
+    public void sendUserStartedAttacking()
+    {
+        listToBeSent.Add(new SFSUserVariable("atk", true));
+    }
+
+    public void sentUserStoppedAttacking()
+    {
+        listToBeSent.Add(new SFSUserVariable("atk", false));
     }
 }

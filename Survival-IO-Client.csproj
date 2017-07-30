@@ -81,12 +81,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CameraAspectRatio.cs" />
     <Compile Include="Assets\Scripts\AttackController.cs" />
+    <Compile Include="Assets\Scripts\CameraAspectRatio.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\ConnectionMenuUI.cs" />
     <Compile Include="Assets\Scripts\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\MovementController.cs" />
+    <Compile Include="Assets\Scripts\NetworkingAttackAnimation.cs" />
     <Compile Include="Assets\Scripts\NetworkingMovementController.cs" />
     <Compile Include="Assets\Scripts\RotationController.cs" />
     <Compile Include="Assets\Scripts\SFS2X_connect.cs" />

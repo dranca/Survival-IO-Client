@@ -31,6 +31,7 @@ public class MovementController : MonoBehaviour {
             isMovementDirty = true;
         }
     }
+
     private void FixedUpdate()
     {
         if (isMovementDirty)

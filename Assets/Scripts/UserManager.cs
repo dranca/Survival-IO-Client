@@ -16,12 +16,11 @@ public class UserManager : MonoBehaviour, UserManagerInput {
     public Transform playerPrefab;
     private Transform localPlayer;
     private User locaLuser;
-
     private Dictionary<User, GameObject> users = new Dictionary<User, GameObject>();
 
     private void Start()
     {
-        if(playerPrefab == null)
+        if (playerPrefab == null)
         {
             Debug.LogError("Please add Player prefab");
         }
@@ -33,13 +32,23 @@ public class UserManager : MonoBehaviour, UserManagerInput {
         float xPos = input.GetFloat("x");
         float yPos = input.GetFloat("y");
         localPlayer = GameObject.Instantiate(playerPrefab);
+        localPlayer.transform.position = new Vector3(xPos, yPos);
+        SetupLocalPlayer(localPlayer);
+        localPlayer.name = "Local Player";
+        
+    }
+
+    private void SetupLocalPlayer(Transform localPlayer)
+    {
         localPlayer.GetComponent<MovementController>().enabled = true;
         localPlayer.GetComponentInChildren<RotationController>().enabled = true;
         localPlayer.GetComponent<Rigidbody2D>().isKinematic = false;
-        localPlayer.transform.position = new Vector3(xPos, yPos);
+        localPlayer.GetComponent<AttackController>().enabled = true;
         localPlayer.GetComponent<NetworkingMovementController>().enabled = false;
+        localPlayer.GetComponent<PolygonCollider2D>().enabled = true;
         Camera.main.GetComponent<CameraFollow>().target = localPlayer.gameObject;
     }
+
     public void ProximityListUpdated(BaseEvent e)
     {
         var addedUsers = (List<User>)e.Params["addedUsers"];
@@ -51,9 +60,10 @@ public class UserManager : MonoBehaviour, UserManagerInput {
             var pos = new Vector3(user.AOIEntryPoint.FloatX, user.AOIEntryPoint.FloatY, 0);
             var rotation = Quaternion.Euler(0, (float)user.GetVariable("rot").GetDoubleValue(), 0);
             var player = GameObject.Instantiate(playerPrefab);
+            
             player.transform.position = pos;
             player.transform.rotation = rotation;
-            player.GetComponent<PolygonCollider2D>().enabled = false;
+            print(pos);
             users[user] = player.gameObject;
         }
 
@@ -72,8 +82,8 @@ public class UserManager : MonoBehaviour, UserManagerInput {
         {
             return;
         }
-        var player = users[user];
-        var networkingMovement = player.GetComponent<NetworkingMovementControllerInput>();
+        var player = users[user]; 
+        NetworkingMovementControllerInput networkingMovement = player.GetComponent<NetworkingMovementControllerInput>();
         bool userMadeChangesToPosition = changedVars.Contains("x") || changedVars.Contains("y");
         if (userMadeChangesToPosition)
         {
@@ -81,12 +91,27 @@ public class UserManager : MonoBehaviour, UserManagerInput {
             var targetPosition = new Vector2((float)user.GetVariable("x").GetDoubleValue(), 
                                              (float)user.GetVariable("y").GetDoubleValue());
             networkingMovement.moveToPosition(targetPosition);
+            print("target rotation" + targetPosition);
         }
 
         bool userMadeChangesToRotation = changedVars.Contains("rot");
         if (userMadeChangesToRotation)
         {
             networkingMovement.rotateToEuler((float)user.GetVariable("rot").GetDoubleValue());
+        }
+        var animationController = player.GetComponent<NetworkingAttackAnimationInput>();
+        bool userMadeChangesToAttack = changedVars.Contains("atk");
+        if (userMadeChangesToAttack)
+        {
+
+            print("User made changes to attack");
+            if (user.GetVariable("atk").GetBoolValue())
+            {
+                animationController.Attack();
+            } else
+            {
+                animationController.TryStopAttack();
+            }
         }
     }
 }
